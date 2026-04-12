@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteModel } from "../../Models/cliente.model";
-import { VentaService } from '../../services/venta.service';
-import { ClienteService } from '../../services/cliente.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VentaModel } from '../../Models/venta.model';
+<<<<<<< HEAD
 import { LibroModel } from '../../Models/libro.model';
 
 
+=======
+import { ApiConexService } from '../../services/api-conex.service';
+>>>>>>> 329baaf44d39b444e11938e87efec0ea372889aa
 
 @Component({
   selector: 'app-log-venta',
@@ -61,8 +63,7 @@ export class LogVenta implements OnInit {
 
 
   constructor(
-    private clienteService: ClienteService,
-    private ventaService: VentaService
+    private ApiConexService: ApiConexService
   ) {}
 
  ngOnInit(): void {
@@ -88,7 +89,7 @@ export class LogVenta implements OnInit {
       DNI: this.DNIcliente
     };
 
-    this.clienteService.registrar(nuevoCliente).subscribe({
+    this.ApiConexService.CrearCliente(nuevoCliente).subscribe({
       next: (clienteCreado) => {
         
         // 2. Una vez creado el cliente, preparamos la venta con su ID
@@ -101,7 +102,7 @@ export class LogVenta implements OnInit {
         };
 
         // 3. Registramos la venta final
-        this.ventaService.guardar(miVenta).subscribe({
+        this.ApiConexService.guardarVenta(miVenta).subscribe({
           next: (res) => {
             alert("Venta Realizada con éxito");
             this.resetForm(); // Limpiamos los campos
