@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClienteModel } from "../../Models/cliente.model";
 import { VentaService } from '../../services/venta.service';
 import { ClienteService } from '../../services/cliente.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VentaModel } from '../../Models/venta.model';
+import { LibroModel } from '../../Models/libro.model';
+
+
 
 @Component({
   selector: 'app-log-venta',
@@ -13,7 +16,8 @@ import { VentaModel } from '../../Models/venta.model';
   templateUrl: './log-venta.html',
   styleUrl: './log-venta.css',
 })
-export class LogVenta {
+
+export class LogVenta implements OnInit {
   // Propiedades vinculadas al formulario (ngModel)
   nameCliente: string = "";
   DNIcliente: string = "";
@@ -22,10 +26,59 @@ export class LogVenta {
   cantidad: number = 5;
   precio: number = 150;
 
+// Selección de libros
+  libros: LibroModel[] = [];
+  librosFiltrados: LibroModel[] = [];
+
+  // Buscador
+  searchText: string = "";
+
+
+  // 🔹 Cargar libros (simulación o comentario para API)
+  cargarLibros() {
+    // Aquí iría la llamada real a la API de libros
+    // this.libroService.getAll().subscribe(data => {
+    //   this.libros = data;
+    //   this.librosFiltrados = data;
+    // });
+
+    // Datos de prueba mientras tanto
+    this.libros = [
+      new LibroModel(1, "El Principito", "Antoine de Saint-Exupéry", 200, 10),
+      new LibroModel(2, "Clean Code", "Robert C. Martin", 500, 5),
+      new LibroModel(3, "Harry Potter", "J.K. Rowling", 350, 8)
+    ];
+
+    this.librosFiltrados = this.libros;
+  }
+
+  // 🔍 Buscar libro por título
+  buscar() {
+    this.librosFiltrados = this.libros.filter(libro =>
+      libro.Titulo.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  } 
+
+
   constructor(
     private clienteService: ClienteService,
     private ventaService: VentaService
   ) {}
+
+ ngOnInit(): void {
+    this.cargarLibros();
+  }
+
+  //  Seleccionar libro y actualizar precio automáticamente
+  seleccionarLibro(libroId: number) {
+    const libro = this.libros.find(l => l.id === libroId);
+    if (libro) {
+      this.SelectLibroId = libro.id;
+      this.precio = libro.Precio;
+      this.cantidad = 1; // Reiniciar cantidad al seleccionar
+    }
+  }
+
 
   guardarVenta() {
     // 1. Primero registramos al cliente
@@ -68,6 +121,8 @@ export class LogVenta {
     this.SelectLibroId = 0;
     this.cantidad = 0;
     this.precio = 0;
+    this.searchText = "";
+    this.librosFiltrados = this.libros; // Resetear la lista filtrada
   }
 }
 
