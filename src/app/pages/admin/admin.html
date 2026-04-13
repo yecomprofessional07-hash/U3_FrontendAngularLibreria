@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Librería</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <div class="admin-header">
+            <div class="logo">
+                <h1><i class="fas fa-book-open"></i> Librería Admin</h1>
+                <p>Panel de gestión integral</p>
+            </div>
+            <div class="admin-info">
+                <span><i class="fas fa-user-shield"></i> <span id="adminNombre">Administrador</span></span>
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs de navegación -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="clientes">
+                <i class="fas fa-users"></i> Clientes
+            </button>
+            <button class="tab-btn" data-tab="libros">
+                <i class="fas fa-book"></i> Libros
+            </button>
+            <button class="tab-btn" data-tab="proveedores">
+                <i class="fas fa-truck"></i> Proveedores
+            </button>
+            <button class="tab-btn" data-tab="categorias">
+                <i class="fas fa-tags"></i> Categorías
+            </button>
+            <button class="tab-btn" data-tab="ventas">
+                <i class="fas fa-chart-line"></i> Ventas
+            </button>
+        </div>
+
+        <!-- ==================== CONTENIDO DE CLIENTES ==================== -->
+        <!-- AQUÍ SE ENCUENTRAN LOS BOTONES CRUD PARA CLIENTES -->
+        <div id="clientes" class="tab-content active">
+            <div class="section-header">
+                <h2><i class="fas fa-user-plus"></i> Gestión de Clientes</h2>
+                <!-- BOTÓN CREAR/AGREGAR NUEVO CLIENTE -->
+                <button class="btn-primary" onclick="abrirModalCliente()">
+                    <i class="fas fa-plus"></i> Nuevo Cliente
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="tablaClientes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>DNI</th>
+                            <th>Correo</th>
+                            <th>Fecha Registro</th>
+                            <th>Estado</th>
+                            <th>Acciones</th> <!-- COLUMNA PARA BOTONES EDITAR Y ELIMINAR -->
+                        </tr>
+                    </thead>
+                    <tbody id="clientesBody">
+                        <!-- AQUÍ SE GENERARÁN DINÁMICAMENTE LAS FILAS CON BOTONES:
+                             <button class="btn-edit">EDITAR</button>
+                             <button class="btn-delete">ELIMINAR</button>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== CONTENIDO DE LIBROS ==================== -->
+        <!-- AQUÍ SE ENCUENTRAN LOS BOTONES CRUD PARA LIBROS -->
+        <div id="libros" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-book-medical"></i> Gestión de Libros</h2>
+                <!-- BOTÓN CREAR/AGREGAR NUEVO LIBRO -->
+                <button class="btn-primary" onclick="abrirModalLibro()">
+                    <i class="fas fa-plus"></i> Nuevo Libro
+                </button>
+            </div>
+            <div class="filtros">
+                <input type="text" id="filtroLibros" placeholder="Buscar libro..." class="filtro-input">
+                <select id="filtroCategoria" class="filtro-select">
+                    <option value="">Todas las categorías</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table id="tablaLibros">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Categoría</th>
+                            <th>Proveedor</th>
+                            <th>Acciones</th> <!-- COLUMNA PARA BOTONES EDITAR Y ELIMINAR -->
+                        </tr>
+                    </thead>
+                    <tbody id="librosBody">
+                        <!-- AQUÍ SE GENERARÁN DINÁMICAMENTE LAS FILAS CON BOTONES:
+                             <button class="btn-edit">EDITAR</button>
+                             <button class="btn-delete">ELIMINAR</button>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== CONTENIDO DE PROVEEDORES ==================== -->
+        <!-- AQUÍ SE ENCUENTRAN LOS BOTONES CRUD PARA PROVEEDORES -->
+        <div id="proveedores" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-truck-moving"></i> Gestión de Proveedores</h2>
+                <!-- BOTÓN CREAR/AGREGAR NUEVO PROVEEDOR -->
+                <button class="btn-primary" onclick="abrirModalProveedor()">
+                    <i class="fas fa-plus"></i> Nuevo Proveedor
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="tablaProveedores">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Fecha Registro</th>
+                            <th>Estado</th>
+                            <th>Acciones</th> <!-- COLUMNA PARA BOTONES EDITAR Y ELIMINAR -->
+                        </tr>
+                    </thead>
+                    <tbody id="proveedoresBody">
+                        <!-- AQUÍ SE GENERARÁN DINÁMICAMENTE LAS FILAS CON BOTONES:
+                             <button class="btn-edit">EDITAR</button>
+                             <button class="btn-delete">ELIMINAR</button>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== CONTENIDO DE CATEGORÍAS ==================== -->
+        <!-- AQUÍ SE ENCUENTRAN LOS BOTONES CRUD PARA CATEGORÍAS -->
+        <div id="categorias" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-tag"></i> Gestión de Categorías</h2>
+                <!-- BOTÓN CREAR/AGREGAR NUEVA CATEGORÍA -->
+                <button class="btn-primary" onclick="abrirModalCategoria()">
+                    <i class="fas fa-plus"></i> Nueva Categoría
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="tablaCategorias">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Fecha Creación</th>
+                            <th>Acciones</th> <!-- COLUMNA PARA BOTONES EDITAR Y ELIMINAR -->
+                        </tr>
+                    </thead>
+                    <tbody id="categoriasBody">
+                        <!-- AQUÍ SE GENERARÁN DINÁMICAMENTE LAS FILAS CON BOTONES:
+                             <button class="btn-edit">EDITAR</button>
+                             <button class="btn-delete">ELIMINAR</button>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== CONTENIDO DE VENTAS ==================== -->
+        <!-- AQUÍ SE ENCUENTRAN LOS BOTONES PARA VENTAS (SOLO VER, NO EDITAR/ELIMINAR) -->
+        <div id="ventas" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-simple"></i> Historial de Ventas</h2>
+                <!-- BOTÓN CREAR NUEVA VENTA -->
+                <button class="btn-primary" onclick="abrirModalVenta()">
+                    <i class="fas fa-cart-plus"></i> Nueva Venta
+                </button>
+            </div>
+            <div class="filtros">
+                <input type="date" id="fechaInicio" class="filtro-input">
+                <input type="date" id="fechaFin" class="filtro-input">
+                <button class="btn-secondary" onclick="filtrarVentas()">
+                    <i class="fas fa-search"></i> Filtrar
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="tablaVentas">
+                    <thead>
+                        <tr>
+                            <th>ID Venta</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Detalles</th> <!-- COLUMNA PARA BOTÓN VER DETALLES -->
+                        </tr>
+                    </thead>
+                    <tbody id="ventasBody">
+                        <!-- AQUÍ SE GENERARÁN DINÁMICAMENTE LAS FILAS CON BOTONES:
+                             <button class="btn-view">VER DETALLES</button>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para formularios CRUD (CREAR/EDITAR) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Título del Modal</h3>
+                <span class="close" onclick="cerrarModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido dinámico del formulario -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles de venta -->
+    <div id="modalDetalles" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalles de Venta</h3>
+                <span class="close" onclick="cerrarModalDetalles()">&times;</span>
+            </div>
+            <div class="modal-body" id="detallesBody"></div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
