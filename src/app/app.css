@@ -1,0 +1,325 @@
+/* Estilos para la imagen superior */
+.imagen-superior {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #283e2b 0%, #4b8017 100%);
+  padding: 60px 0;
+}
+
+.imagen-superior img {
+  width: 90%;
+  max-width: 800px;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Barra de búsqueda estilo Amazon */
+.barra-busqueda {
+  background-color: #2a3e23;
+  padding: 15px 20px;
+  margin: 0;
+}
+
+.contenedor-busqueda {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.categoria-select {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
+}
+
+.categoria-select:hover {
+  background-color: #e6e6e6;
+}
+
+.input-busqueda {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.btn-buscar {
+  background-color: #b7e142;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s;
+}
+
+.btn-buscar:hover {
+  background-color: #f3a847;
+}
+
+.btn-Login {
+  background-color: #b7e142;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 90px;
+}
+
+.btn-Login:hover {
+  background-color: #f3a847;
+}
+
+.contenido-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.img-perfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.texto-usuario {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Tarjeta CTA */
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #2b5036 0%, #1d5d2e 100%);
+  color: white;
+  padding: 50px;
+  border-radius: 20px;
+  margin: 50px auto;
+  max-width: 800px;
+  width: 90%;
+}
+
+.cta h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.cta p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.btn-vender {
+  background: white;
+  color: #2b5036;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-vender:hover {
+  transform: scale(1.05);
+  background: #f0f0f0;
+}
+
+/* Responsive - solo para que no se deforme */
+@media (max-width: 768px) {
+  .contenedor-busqueda {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .categoria-select {
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .input-busqueda {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .btn-buscar {
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+  .btn-Login {
+    margin-left: 0;
+    flex: 1;
+  }
+  
+  .cta {
+    padding: 30px 20px;
+  }
+  
+  .cta h2 {
+    font-size: 24px;
+  }
+  
+  .cta p {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   ESTILOS PARA CARRUSELES
+   ============================================ */
+
+.carrusel-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.carrusel-titulo {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 4px solid #b7e142;
+}
+
+.carrusel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carrusel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px 10px;
+  scrollbar-width: thin;
+  flex: 1;
+}
+
+.carrusel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carrusel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.carrusel::-webkit-scrollbar-thumb {
+  background: #b7e142;
+  border-radius: 10px;
+}
+
+.tarjeta-libro {
+  min-width: 220px;
+  max-width: 220px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+}
+
+.tarjeta-libro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.tarjeta-libro h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.tarjeta-libro p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.tarjeta-libro .precio {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #b7e142;
+  margin-bottom: 15px;
+}
+
+.tarjeta-libro .btn-comprar {
+  background: linear-gradient(135deg, #283e2b 0%, #4b8017 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform 0.2s;
+}
+
+.tarjeta-libro .btn-comprar:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #4b8017 0%, #283e2b 100%);
+}
+
+.carrusel-btn {
+  background-color: #b7e142;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.carrusel-btn:hover {
+  background-color: #f3a847;
+}
+
+/* Responsive carruseles */
+@media (max-width: 768px) {
+  .tarjeta-libro {
+    min-width: 180px;
+    max-width: 180px;
+    padding: 15px;
+  }
+  
+  .tarjeta-libro h3 {
+    font-size: 14px;
+  }
+  
+  .carrusel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}
