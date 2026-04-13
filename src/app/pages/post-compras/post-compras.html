@@ -48,41 +48,14 @@
   <div class="carrusel-container">
     <button class="carrusel-btn previo" data-carrusel="todos" data-dir="-1">&#10094;</button>
     <div class="carrusel" id="carrusel-todos">
-      <div class="tarjeta-libro">
-        <img src="/images/test.jpg">
-        <h3>Cien años de soledad</h3>
-        <p>Gabriel García Márquez</p>
-        <span class="precio">$12.000</span>
-        <button class="btn-comprar">Comprar</button>
-      </div>
-      <div class="tarjeta-libro">
-        <h3>1984</h3>
-        <p>George Orwell</p>
-        <span class="precio">$9.500</span>
-        <button class="btn-comprar">Comprar</button>
-      </div>
-      <div class="tarjeta-libro">
-        <h3>El principito</h3>
-        <p>Antoine de Saint-Exupéry</p>
-        <span class="precio">$7.000</span>
-        <button class="btn-comprar">Comprar</button>
-      </div>
-      <div class="tarjeta-libro">
-        <h3>Clean Code</h3>
-        <p>Robert C. Martin</p>
-        <span class="precio">$25.000</span>
-        <button class="btn-comprar">Comprar</button>
-      </div>
-      <div class="tarjeta-libro">
-        <h3>Don Quijote</h3>
-        <p>Miguel de Cervantes</p>
-        <span class="precio">$15.000</span>
-        <button class="btn-comprar">Comprar</button>
-      </div>
-      <div class="tarjeta-libro">
-        <h3>Harry Potter</h3>
-        <p>J.K. Rowling</p>
-        <span class="precio">$18.000</span>
+
+
+    <!--LISTANDO TODOS LOS LIBROS CON *ngFor-->
+      <div class="tarjeta-libro" *ngFor="let libro of libros">
+        <h3>{{ libro.titulo }}</h3>
+        <img src = "images/test.jpg">
+        <p>{{ libro.autor }}</p>
+        <span class="precio">${{ libro.precio }}</span>
         <button class="btn-comprar">Comprar</button>
       </div>
     </div>

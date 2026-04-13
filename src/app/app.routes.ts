@@ -7,5 +7,5 @@ export const routes: Routes = [
     {path: "ventas", component: LogVenta},
     {path: "Inicio", component: PostCompras},
     {path: "PanelAdmin", component: Admin},
-    { path: '', redirectTo: 'ventas', pathMatch: 'full' }
+    { path: '', redirectTo: 'Inicio', pathMatch: 'full' }
 ];
