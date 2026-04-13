@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.login-page {
+  min-height: 100vh;
+  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+  background: #e8e2da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(12px);
+  background-image: url('/auth/bg.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.1;
+  background-size: 180px 180px;
+  backdrop-filter: blur(12px);
+}
+
+/* Outer card */
+.login-card {
+  background: #f3f0ec;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 40px rgba(60, 40, 10, 0.18);
+  width: 100%;
+  max-width: 500px;
+  min-height: 680px;
+  padding: 2.5rem 2rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle watercolor texture overlay */
+.login-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 35% at 10% 8%, rgba(180, 200, 160, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 25% at 85% 5%, rgba(200, 210, 180, 0.13) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+  z-index: 1;
+}
+
+.header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #2c2416;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.header p {
+  font-size: 0.9rem;
+  color: #7a7060;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Role cards row */
+.roles-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  z-index: 1;
+}
+
+.role-card {
+  background: #f2ede6;
+  border: 1px solid rgba(100, 80, 50, 0.15);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  box-shadow: 0 2px 12px rgba(80, 60, 30, 0.1);
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.role-card:hover {
+  box-shadow: 0 6px 24px rgba(80, 60, 30, 0.18);
+  transform: translateY(-2px);
+}
+
+.role-card .icon-wrap {
+  width: 80px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-card .icon-wrap img {
+  width: 80px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.role-card h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2c2416;
+}
+
+.role-card p {
+  font-size: 0.82rem;
+  color: #7a7060;
+  line-height: 1.5;
+  max-width: 20ch;
+}
+
+.role-btn {
+  display: block;
+  width: 100%;
+  background: #4a6741;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 180ms ease;
+  margin-top: 0.25rem;
+}
+
+.role-btn:hover {
+  background: #3a5232;
+}
+
+/* Bottom decorative illustration area */
+.deco-strip {
+  width: calc(100% + 4rem);
+  margin-top: 1.5rem;
+  height: 170px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+/* Placeholder decorative boxes mimicking watercolor illustrations */
+.deco-plant,
+.deco-books-pencils {
+  display: flex;
+  align-items: center;
+}
+
+.placeholder-illus {
+  border-radius: 0.5rem;
+  opacity: 0.55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+
+.deco-plant .placeholder-illus {
+  width: 100px;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(120, 160, 90, 0.25), transparent 70%);
+  font-size: 8.5rem;
+}
+
+/* Icon placeholders inside role cards */
+.icon-placeholder {
+  width: 340px;
+  height: 342px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1rem 0 1rem;
+  }
+  .roles-row {
+    gap: 0.75rem;
+  }
+  .role-card {
+    padding: 1rem 0.75rem;
+  }
+}
