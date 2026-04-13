@@ -3,13 +3,8 @@ import { ClienteModel } from "../../Models/cliente.model";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VentaModel } from '../../Models/venta.model';
-<<<<<<< HEAD
 import { LibroModel } from '../../Models/libro.model';
-
-
-=======
 import { ApiConexService } from '../../services/api-conex.service';
->>>>>>> 329baaf44d39b444e11938e87efec0ea372889aa
 
 @Component({
   selector: 'app-log-venta',
