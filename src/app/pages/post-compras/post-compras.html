@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>BookSphere - Post Compras</title>
+  <!-- Hoja de estilos local -->
+  <link rel="stylesheet" href="post-compras.css">
+</head>
+<body>
+
+<!-- Imagen superior / Banner -->
+<div class="imagen-superior">
+  <img src="BookSphere_page.jpg" alt="BookSphere Banner">
+</div>
+
+<!-- Barra de búsqueda estilo Amazon -->
+<div class="barra-busqueda">
+  <div class="contenedor-busqueda">
+    <select class="categoria-select" id="categoriaSelect">
+      <option value="todo">Todo</option>
+      <option value="libros">Libros</option>
+      <option value="novelas">Novelas</option>
+      <option value="ciencia">Ciencia</option>
+      <option value="historia">Historia</option>
+      <option value="tecnologia">Tecnología</option>
+    </select>
+    <input 
+      type="text" 
+      class="input-busqueda" 
+      id="inputBusqueda"
+      placeholder="Buscar libros, autores, categorías...">
+    <button class="btn-buscar" id="btnBuscar">
+      🔍 Buscar
+    </button>
+    <button class="btn-Login" id="btnLogin">
+      <div class="contenido-perfil">
+        <img src="Perfil.jpg" alt="Perfil" class="img-perfil">
+        <span class="texto-usuario">Usuario</span>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- ========== CARRUSEL: Todos los libros ========== -->
+<section class="carrusel-section">
+  <h2 class="carrusel-titulo">📚 Todos los libros</h2>
+  <div class="carrusel-container">
+    <button class="carrusel-btn previo" data-carrusel="todos" data-dir="-1">&#10094;</button>
+    <div class="carrusel" id="carrusel-todos">
+      <div class="tarjeta-libro">
+        <img src="/images/test.jpg">
+        <h3>Cien años de soledad</h3>
+        <p>Gabriel García Márquez</p>
+        <span class="precio">$12.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>1984</h3>
+        <p>George Orwell</p>
+        <span class="precio">$9.500</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>El principito</h3>
+        <p>Antoine de Saint-Exupéry</p>
+        <span class="precio">$7.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Clean Code</h3>
+        <p>Robert C. Martin</p>
+        <span class="precio">$25.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Don Quijote</h3>
+        <p>Miguel de Cervantes</p>
+        <span class="precio">$15.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Harry Potter</h3>
+        <p>J.K. Rowling</p>
+        <span class="precio">$18.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+    <button class="carrusel-btn siguiente" data-carrusel="todos" data-dir="1">&#10095;</button>
+  </div>
+</section>
+
+<!-- ========== CARRUSEL: Novelas ========== -->
+<section class="carrusel-section">
+  <h2 class="carrusel-titulo">📖 Novelas</h2>
+  <div class="carrusel-container">
+    <button class="carrusel-btn previo" data-carrusel="novelas" data-dir="-1">&#10094;</button>
+    <div class="carrusel" id="carrusel-novelas">
+      <div class="tarjeta-libro">
+        <h3>Cien años de soledad</h3>
+        <p>Gabriel García Márquez</p>
+        <span class="precio">$12.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>1984</h3>
+        <p>George Orwell</p>
+        <span class="precio">$9.500</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Rayuela</h3>
+        <p>Julio Cortázar</p>
+        <span class="precio">$14.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>La sombra del viento</h3>
+        <p>Carlos Ruiz Zafón</p>
+        <span class="precio">$16.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+    <button class="carrusel-btn siguiente" data-carrusel="novelas" data-dir="1">&#10095;</button>
+  </div>
+</section>
+
+<!-- ========== CARRUSEL: Ciencia ========== -->
+<section class="carrusel-section">
+  <h2 class="carrusel-titulo">🔬 Ciencia</h2>
+  <div class="carrusel-container">
+    <button class="carrusel-btn previo" data-carrusel="ciencia" data-dir="-1">&#10094;</button>
+    <div class="carrusel" id="carrusel-ciencia">
+      <div class="tarjeta-libro">
+        <h3>Breve historia del tiempo</h3>
+        <p>Stephen Hawking</p>
+        <span class="precio">$20.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>El gen egoísta</h3>
+        <p>Richard Dawkins</p>
+        <span class="precio">$18.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Cosmos</h3>
+        <p>Carl Sagan</p>
+        <span class="precio">$22.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+    <button class="carrusel-btn siguiente" data-carrusel="ciencia" data-dir="1">&#10095;</button>
+  </div>
+</section>
+
+<!-- ========== CARRUSEL: Historia ========== -->
+<section class="carrusel-section">
+  <h2 class="carrusel-titulo">📜 Historia</h2>
+  <div class="carrusel-container">
+    <button class="carrusel-btn previo" data-carrusel="historia" data-dir="-1">&#10094;</button>
+    <div class="carrusel" id="carrusel-historia">
+      <div class="tarjeta-libro">
+        <h3>Sapiens</h3>
+        <p>Yuval Noah Harari</p>
+        <span class="precio">$19.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>Homo Deus</h3>
+        <p>Yuval Noah Harari</p>
+        <span class="precio">$21.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+    <button class="carrusel-btn siguiente" data-carrusel="historia" data-dir="1">&#10095;</button>
+  </div>
+</section>
+
+<!-- ========== CARRUSEL: Tecnología ========== -->
+<section class="carrusel-section">
+  <h2 class="carrusel-titulo">💻 Tecnología</h2>
+  <div class="carrusel-container">
+    <button class="carrusel-btn previo" data-carrusel="tecnologia" data-dir="-1">&#10094;</button>
+    <div class="carrusel" id="carrusel-tecnologia">
+      <div class="tarjeta-libro">
+        <h3>Clean Code</h3>
+        <p>Robert C. Martin</p>
+        <span class="precio">$25.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>The Pragmatic Programmer</h3>
+        <p>David Thomas</p>
+        <span class="precio">$28.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+      <div class="tarjeta-libro">
+        <h3>JavaScript: The Good Parts</h3>
+        <p>Douglas Crockford</p>
+        <span class="precio">$15.000</span>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+    <button class="carrusel-btn siguiente" data-carrusel="tecnologia" data-dir="1">&#10095;</button>
+  </div>
+</section>
+
+<!-- Sección de venta de libros (CTA) -->
+<section class="cta">
+  <h2>¿Quieres vender tus libros?</h2>
+  <p>Regístrate y publica tus libros de segunda mano</p>
+  <button class="btn-vender" id="btnVender">Comenzar a vender</button>
+</section>
+
+<!-- NOTA: Los botones "Usuario" y "Comenzar a vender" redirigen al LOGIN (simulado) -->
+<script src="post-compras.ts"></script>
+<!-- Si prefieres trabajar con JS puro, puedes cambiar la extensión del archivo a .js 
+     pero manteniendo la lógica. El TypeScript se compilará a JS. -->
+</body>
+</html>

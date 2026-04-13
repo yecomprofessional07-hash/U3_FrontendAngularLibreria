@@ -1,0 +1,394 @@
+/* ============================================
+   post-compras.css 
+   Estilos completos para la página de post-compras
+   ============================================ */
+
+/* Reset básico y tipografía */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafaf8;
+}
+
+/* Imagen superior / Banner */
+.imagen-superior {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #283e2b 0%, #4b8017 100%);
+  padding: 40px 0;
+}
+
+.imagen-superior img {
+  width: 90%;
+  max-width: 800px;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.imagen-superior img:hover {
+  transform: scale(1.01);
+}
+
+/* Barra de búsqueda estilo Amazon */
+.barra-busqueda {
+  background-color: #2a3e23;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-busqueda {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.categoria-select {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
+  font-weight: 500;
+}
+
+.categoria-select:hover {
+  background-color: #e6e6e6;
+}
+
+.input-busqueda {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  min-width: 180px;
+}
+
+.btn-buscar {
+  background-color: #b7e142;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1e2a1c;
+  transition: all 0.2s ease;
+}
+
+.btn-buscar:hover {
+  background-color: #f3a847;
+  transform: scale(0.98);
+}
+
+.btn-Login {
+  background-color: #b7e142;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  margin-left: 30px;
+}
+
+.btn-Login:hover {
+  background-color: #f3a847;
+  transform: scale(1.02);
+}
+
+.contenido-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.img-perfil {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.texto-usuario {
+  font-size: 11px;
+  font-weight: bold;
+  color: #1e2a1c;
+}
+
+/* ========== CARRUSELES ========== */
+.carrusel-section {
+  max-width: 1300px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.carrusel-titulo {
+  font-size: 28px;
+  color: #1f3b2c;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  border-left: 6px solid #b7e142;
+  font-weight: 600;
+}
+
+.carrusel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carrusel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 24px;
+  padding: 20px 10px;
+  scrollbar-width: thin;
+  flex: 1;
+  border-radius: 20px;
+}
+
+.carrusel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carrusel::-webkit-scrollbar-track {
+  background: #e9e9e4;
+  border-radius: 10px;
+}
+
+.carrusel::-webkit-scrollbar-thumb {
+  background: #b7e142;
+  border-radius: 10px;
+}
+
+.tarjeta-libro {
+  min-width: 230px;
+  max-width: 230px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 15px;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0dc;
+  flex-shrink: 0;
+}
+
+.tarjeta-libro:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+  border-color: #c7e6a5;
+}
+
+.tarjeta-libro h3 {
+  font-size: 18px;
+  color: #2c4b32;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.tarjeta-libro p {
+  font-size: 13px;
+  color: #5a6e5a;
+  margin-bottom: 12px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.tarjeta-libro .precio {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4f8a2e;
+  margin-bottom: 15px;
+  letter-spacing: -0.3px;
+}
+
+.tarjeta-libro .btn-comprar {
+  background: linear-gradient(135deg, #2c5e2f 0%, #5f9e2c 100%);
+  color: white;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.tarjeta-libro .btn-comprar:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #1f4822 0%, #4c8a1f 100%);
+}
+
+.carrusel-btn {
+  background-color: #b7e142;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2b3b26;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carrusel-btn:hover {
+  background-color: #f3a847;
+  transform: scale(1.05);
+}
+
+/* Sección Vender libros CTA */
+.cta {
+  text-align: center;
+  background: linear-gradient(115deg, #254b30 0%, #1a6b2f 100%);
+  color: white;
+  padding: 55px 20px;
+  border-radius: 40px;
+  margin: 60px auto;
+  max-width: 950px;
+  width: 90%;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.cta h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+}
+
+.cta p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.btn-vender {
+  background: white;
+  color: #1a5e2a;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-vender:hover {
+  transform: scale(1.03);
+  background: #f9f9dc;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .contenedor-busqueda {
+    gap: 8px;
+  }
+  
+  .categoria-select {
+    border-radius: 30px;
+    width: auto;
+  }
+  
+  .input-busqueda {
+    border-radius: 30px;
+    width: 100%;
+  }
+  
+  .btn-buscar {
+    border-radius: 30px;
+  }
+  
+  .btn-Login {
+    margin-left: 0;
+    border-radius: 40px;
+    padding: 8px 16px;
+  }
+  
+  .tarjeta-libro {
+    min-width: 190px;
+    max-width: 190px;
+    padding: 15px 12px;
+  }
+  
+  .tarjeta-libro h3 {
+    font-size: 15px;
+  }
+  
+  .carrusel-titulo {
+    font-size: 24px;
+  }
+  
+  .carrusel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 580px) {
+  .imagen-superior {
+    padding: 20px 0;
+  }
+  
+  .imagen-superior img {
+    max-height: 140px;
+  }
+  
+  .barra-busqueda {
+    padding: 12px;
+  }
+  
+  .categoria-select, .input-busqueda, .btn-buscar, .btn-Login {
+    font-size: 13px;
+  }
+  
+  .tarjeta-libro {
+    min-width: 160px;
+    max-width: 160px;
+  }
+  
+  .carrusel-section {
+    margin: 30px auto;
+  }
+  
+  .cta h2 {
+    font-size: 26px;
+  }
+  
+  .cta p {
+    font-size: 15px;
+  }
+  
+  .btn-vender {
+    padding: 10px 28px;
+    font-size: 16px;
+  }
+}
