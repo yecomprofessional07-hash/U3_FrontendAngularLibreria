@@ -5,9 +5,9 @@ import { Admin } from "./pages/admin/admin";
 import { VistProduc } from "./pages/vist-produc/vist-produc";
 
 export const routes: Routes = [
-    {path: "ventas", component: LogVenta},
-    {path: "Inicio", component: PostCompras},
-    {path: "PanelAdmin", component: Admin},
-    { path: '', redirectTo: 'ventas', pathMatch: 'full' },
-    { path: "productos", component: VistProduc},
+    { path: "ventas", component: LogVenta },
+    { path: "Inicio", component: PostCompras },
+    { path: "PanelAdmin", component: Admin },
+    { path: "productos", component: VistProduc }, // Ruta de la otra rama
+    { path: '', redirectTo: 'Inicio', pathMatch: 'full' } // Redirección limpia
 ];
