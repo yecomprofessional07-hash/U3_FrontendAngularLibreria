@@ -11,51 +11,53 @@ import { VentaModel } from '../Models/venta.model';
 
 export class ApiConexService {
 
-    private url= "http apis y mas";
+    private urlBase = "https://localhost:7263/api";
+    private urlClientes = `${this.urlBase}/Clientes`;
+    private urlLibros = `${this.urlBase}/Libros`; 
     constructor(private http: HttpClient){}
 
     //Metodos del Cliente
 
     CrearCliente(cliente: ClienteModel): Observable<ClienteModel>{
-        return this.http.post<ClienteModel>(this.url, cliente);
+        return this.http.post<ClienteModel>(this.urlClientes, cliente);
     }
 
     ObtenerCliente(id: number): Observable<ClienteModel>{
-        return this.http.get<ClienteModel>(`${this.url}/${id}`);
+        return this.http.get<ClienteModel>(`${this.urlClientes}/${id}`);
     }
     ActualizarCliente(id: number,cliente: ClienteModel): Observable<ClienteModel>{
-        return this.http.put<ClienteModel>(`${this.url}/${id}`, cliente);
+        return this.http.put<ClienteModel>(`${this.urlClientes}/${id}`, cliente);
     }
     EliminarCliente(id: number): Observable<any>{
-        return this.http.delete<any>(`${this.url}/${id}`);
+        return this.http.delete<any>(`${this.urlClientes}/${id}`);
     }
     ListarClientes(): Observable<ClienteModel[]>{
-        return this.http.get<ClienteModel[]>(this.url);
+        return this.http.get<ClienteModel[]>(this.urlClientes);
     }
 
     //Metodos del Libro
 
     CrearLibro(libro: LibroModel): Observable<LibroModel>{
-        return this.http.post<LibroModel>(this.url, libro);
+        return this.http.post<LibroModel>(this.urlLibros, libro);
     }
 
     ObtenerLibro(id: number): Observable<LibroModel>{
-        return this.http.get<LibroModel>(`${this.url}/${id}`);
+        return this.http.get<LibroModel>(`${this.urlLibros}/${id}`);
     }
     ActualizarLibro(id: number, libro: LibroModel): Observable<LibroModel>{
-        return this.http.put<LibroModel>(`${this.url}/${id}`, libro);
+        return this.http.put<LibroModel>(`${this.urlLibros}/${id}`, libro);
     }
     EliminarLibro(id: number): Observable<any>{
-        return this.http.delete<any>(`${this.url}/${id}`);
+        return this.http.delete<any>(`${this.urlLibros}/${id}`);
     }
-    ListarLibro(): Observable<LibroModel[]>{
-        return this.http.get<LibroModel[]>(this.url);
+    ListarLibro(): Observable<any>{
+        return this.http.get<any>(this.urlLibros);
     }
 
     //Metodos de la Venta
 
     guardarVenta(venta: VentaModel){
-        return this.http.post<VentaModel>(this.url, venta);
+        return this.http.post<VentaModel>(this.urlLibros, venta);
     }
 
 }
