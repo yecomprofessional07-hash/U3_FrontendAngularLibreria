@@ -8,6 +8,6 @@ export const routes: Routes = [
     { path: "ventas", component: LogVenta },
     { path: "Inicio", component: PostCompras },
     { path: "PanelAdmin", component: Admin },
-    { path: "productos", component: VistProduc }, // Ruta de la otra rama
-    { path: '', redirectTo: 'Inicio', pathMatch: 'full' } // Redirección limpia
+    { path: "productos", component: VistProduc }, 
+    { path: '', redirectTo: 'Inicio', pathMatch: 'full' }
 ];
