@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'; // Importar esto
 import { ClienteModel } from '../Models/cliente.model';
 import { LibroModel } from '../Models/libro.model';
 import { VentaModel } from '../Models/venta.model';
+import { CategoriaModel } from '../Models/categoria.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ApiConexService {
     private urlBase = "https://localhost:7263/api";
     private urlClientes = `${this.urlBase}/Clientes`;
     private urlLibros = `${this.urlBase}/Libros`; 
+    private urlCategoria = `${this.urlBase}/categorias`;
     constructor(private http: HttpClient){}
 
     //Metodos del Cliente
@@ -53,6 +55,25 @@ export class ApiConexService {
     ListarLibro(): Observable<any>{
         return this.http.get<any>(this.urlLibros);
     }
+
+    //Metodos de las categorias
+    CrearCategoria(cliente: CategoriaModel): Observable<CategoriaModel>{
+        return this.http.post<CategoriaModel>(this.urlCategoria, cliente);
+    }
+
+    ObtenerCategoria(id: number): Observable<CategoriaModel>{
+        return this.http.get<CategoriaModel>(`${this.urlClientes}/${id}`);
+    }
+    ActualizarCategoria(id: number,cliente: CategoriaModel): Observable<CategoriaModel>{
+        return this.http.put<CategoriaModel>(`${this.urlCategoria}/${id}`, cliente);
+    }
+    EliminarCategoria(id: number): Observable<any>{
+        return this.http.delete<any>(`${this.urlCategoria}/${id}`);
+    }
+    ListarCategoria(): Observable<CategoriaModel[]>{
+        return this.http.get<CategoriaModel[]>(this.urlCategoria);
+    }
+
 
     //Metodos de la Venta
 
