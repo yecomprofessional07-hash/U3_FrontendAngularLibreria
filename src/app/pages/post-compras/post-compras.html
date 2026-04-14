@@ -32,9 +32,8 @@
 <section class="carrusel-section">
   <h2 class="carrusel-titulo">📚 {{ categoriaSelect === 'Todas' ? 'Todos los libros' : categoriaSelect }}</h2>
   <div class="carrusel-container">
-    <button class="carrusel-btn previo">❮</button>
+    <button class="carrusel-btn previo"></button>
     <div class="carrusel">
-      <!-- Mantenemos librosFiltrados que es el que tiene la lógica de búsqueda -->
       <div class="tarjeta-libro" *ngFor="let libro of librosFiltrados">
         <h3>{{ libro.titulo }}</h3>
         <img src="images/test.jpg">
@@ -43,7 +42,7 @@
         <button class="btn-comprar">Comprar</button>
       </div>
     </div>
-    <button class="carrusel-btn siguiente">❯</button>
+    <button class="carrusel-btn siguiente"></button>
   </div>
 </section>
 
@@ -51,7 +50,7 @@
 <section class="carrusel-section" *ngIf="categoriaSelect === 'Todas' || categoriaSelect === 'Ciencia'">
   <h2 class="carrusel-titulo">🔬 Ciencia</h2>
   <div class="carrusel-container">
-    <button class="carrusel-btn previo">❮</button>
+    <button class="carrusel-btn previo"></button>
     <div class="carrusel">
       <div class="tarjeta-libro" *ngFor="let libro of librosCiencia">
         <h3>{{ libro.titulo }}</h3>
@@ -61,7 +60,7 @@
         <button class="btn-comprar">Comprar</button>
       </div>
     </div>
-    <button class="carrusel-btn siguiente">❯</button>
+    <button class="carrusel-btn siguiente"></button>
   </div>
 </section>
 
@@ -69,7 +68,7 @@
 <section class="carrusel-section" *ngIf="categoriaSelect === 'Todas' || categoriaSelect === 'Historia'">
   <h2 class="carrusel-titulo">📜 Historia</h2>
   <div class="carrusel-container">
-    <button class="carrusel-btn previo">❮</button>
+    <button class="carrusel-btn previo"></button>
     <div class="carrusel">
       <div class="tarjeta-libro" *ngFor="let libro of librosHistoria">
         <h3>{{ libro.titulo }}</h3>
@@ -79,7 +78,7 @@
         <button class="btn-comprar">Comprar</button>
       </div>
     </div>
-    <button class="carrusel-btn siguiente">❯</button>
+    <button class="carrusel-btn siguiente"></button>
   </div>
 </section>
 
