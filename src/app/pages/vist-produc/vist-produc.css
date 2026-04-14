@@ -1,0 +1,232 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafaf8;
+}
+
+/* =========================
+   BARRA DE BÚSQUEDA
+========================= */
+.barra-busqueda {
+  background-color: #2a3e23;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-busqueda {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.categoria-select {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
+  font-weight: 500;
+}
+
+.input-busqueda {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+  min-width: 180px;
+}
+
+.btn-buscar {
+  background-color: #b7e142;
+  border: none;
+  padding: 12px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #1e2a1c;
+}
+
+.btn-buscar:hover {
+  background-color: #f3a847;
+}
+
+.btn-Login {
+  background-color: #b7e142;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 40px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.contenido-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.img-perfil {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.texto-usuario {
+  font-size: 11px;
+  font-weight: bold;
+  color: #1e2a1c;
+}
+
+/* =========================
+   LAYOUT AMAZON
+========================= */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.product-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* IMAGEN */
+.product-image {
+  flex: 0 0 320px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.product-image img:hover {
+  transform: scale(1.02);
+}
+
+/* INFO */
+.book-details {
+  flex: 1;
+}
+
+.category {
+  color: #6b7f6b;
+  font-size: 13px;
+}
+
+.book-title {
+  font-size: 32px;
+  color: #1f3b2c;
+  margin: 10px 0;
+}
+
+.author {
+  color: #4f8a2e;
+  margin-bottom: 10px;
+}
+
+/* STARS */
+.star {
+  color: #f3a847;
+}
+
+.star.empty {
+  color: #ddd;
+}
+
+/* PRICE */
+.price {
+  font-size: 34px;
+  color: #4f8a2e;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* DESCRIPTION */
+.description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* META */
+.meta-grid {
+  background: #f8f8f4;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0dc;
+}
+
+/* PURCHASE */
+.purchase-section {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  background: #f3f3f3;
+  border-radius: 30px;
+}
+
+.quantity-selector button {
+  border: none;
+  background: transparent;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #2c5e2f, #5f9e2c);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.btn-cart {
+  border: 2px solid #5f9e2c;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .product-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image img {
+    height: 400px;
+  }
+}
