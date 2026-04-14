@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ClienteModel } from '../Models/cliente.model';
 import { LibroModel } from '../Models/libro.model';
 import { VentaModel } from '../Models/venta.model';
+import { ProveedoresModel } from '../Models/Proveedores.model';
 import { CategoriaModel } from '../Models/categoria.model';
 
 @Injectable({
@@ -15,6 +16,7 @@ export class ApiConexService {
     private urlClientes = `${this.urlBase}/Clientes`;
     private urlLibros = `${this.urlBase}/Libros`; 
     private urlCategoria = `${this.urlBase}/categorias`;
+    private urlProveedores = `${this.urlBase}/Proveedores`; 
 
     constructor(private http: HttpClient){}
 
@@ -69,9 +71,25 @@ export class ApiConexService {
         return this.http.get<any>(this.urlCategoria);
     }
 
+    // Metodos del Proveedor
+    CrearProveedor(Proveedor: ProveedoresModel): Observable<ProveedoresModel>{
+        return this.http.post<ProveedoresModel>(this.urlProveedores, Proveedor);
+    }
+    ObtenerProveedor(id: number): Observable<ProveedoresModel>{
+        return this.http.get<ProveedoresModel>(`${this.urlProveedores}/${id}`);
+    }
+    ActualizarProveedor(id: number, Proveedor: ProveedoresModel): Observable<ProveedoresModel>{
+        return this.http.put<ProveedoresModel>(`${this.urlProveedores}/${id}`, Proveedor);
+    }
+    EliminarProveedor(id: number): Observable<any>{
+        return this.http.delete<any>(`${this.urlProveedores}/${id}`);
+    }
+    ListarProveedor(): Observable<ProveedoresModel[]>{
+        return this.http.get<ProveedoresModel[]>(this.urlProveedores);
+    }
+
     // Metodos de la Venta
     guardarVenta(venta: VentaModel){
-        // Nota: Asegúrate de que la URL de ventas sea correcta en tu backend
         return this.http.post<VentaModel>(`${this.urlBase}/Ventas`, venta);
     }
 }
