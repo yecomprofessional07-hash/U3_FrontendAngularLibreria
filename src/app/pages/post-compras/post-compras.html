@@ -34,6 +34,7 @@
   <div class="carrusel-container">
     <button class="carrusel-btn previo">❮</button>
     <div class="carrusel">
+      <!-- Mantenemos librosFiltrados que es el que tiene la lógica de búsqueda -->
       <div class="tarjeta-libro" *ngFor="let libro of librosFiltrados">
         <h3>{{ libro.titulo }}</h3>
         <img src="images/test.jpg">
