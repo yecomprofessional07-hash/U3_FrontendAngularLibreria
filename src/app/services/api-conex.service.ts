@@ -89,7 +89,8 @@ export class ApiConexService {
     }
 
     // Metodos de la Venta
-    guardarVenta(venta: VentaModel){
+    guardarVenta(venta: VentaModel): Observable<VentaModel>{
         return this.http.post<VentaModel>(`${this.urlBase}/Ventas`, venta);
     }
 }
+
