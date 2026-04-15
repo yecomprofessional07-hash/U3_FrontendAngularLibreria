@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';  // 👈 AGREGE ESTA LÍNEA
 import { ApiConexService } from '../../services/api-conex.service';
 import { ChangeDetectorRef } from '@angular/core';
-
 
 @Component({
   selector: 'app-post-compras',
@@ -12,18 +12,25 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrl: './post-compras.css',
 })
 export class PostCompras {
-public libros: any[] = []; // Aquí se guardará lo que devuelva tu API
+public libros: any[] = [];
 public categoriaSelect: string = "Todas";
 public categorias: any[] = [];
 public textoBusqueda: string = "";
 
   constructor(
   private apiService: ApiConexService, 
-  private cdr: ChangeDetectorRef 
+  private cdr: ChangeDetectorRef,
+  private router: Router  // 👈 AGREGAR ESTA LÍNEA
   ) {}
 
+ irAProducto(libro: any) {
+  console.log('Guardando libro:', libro); // Para depurar
+  localStorage.setItem('libroSeleccionado', JSON.stringify(libro));
+  this.router.navigate(['/productos']);
+}
+
     obtenerLibros() {
-      this.apiService.ListarLibro().subscribe((response: any) => { // Cambia esto a :any
+      this.apiService.ListarLibro().subscribe((response: any) => {
       this.libros = response.data; 
       this.cdr.detectChanges();
       localStorage.setItem('mis_libros', JSON.stringify(response.data));
@@ -35,22 +42,20 @@ public textoBusqueda: string = "";
       if (librosGuardados) {
         this.libros = JSON.parse(librosGuardados);
       } else {
-        this.obtenerLibros(); // Si no hay nada, pedimos a la API
+        this.obtenerLibros();
       }
     }
     obtenerCategorias() {
     this.apiService.ListarCategoria().subscribe((response: any) => {
-      this.categorias = response.data; // Suponiendo que tu API devuelve { data: [...] }
+      this.categorias = response.data;
       this.cdr.detectChanges();
     });
   }
   get librosFiltrados() {
     return this.libros.filter(libro => {
-      // Filtro por categoría
       const cumpleCategoria = this.categoriaSelect === "Todas" || 
                               libro.categoriaNombre === this.categoriaSelect;
 
-      // Filtro por texto (título, autor o categoría)
       const busqueda = this.textoBusqueda.toLowerCase();
       const cumpleTexto = libro.titulo.toLowerCase().includes(busqueda) || 
                           libro.autor.toLowerCase().includes(busqueda);

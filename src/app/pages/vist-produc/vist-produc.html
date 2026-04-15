@@ -89,13 +89,13 @@
     <div class="purchase-section">
 
       <div class="quantity-selector">
-        <button onclick="changeQty(-1)">−</button>
-        <input type="number" id="qty" value="1" min="1" readonly>
-        <button onclick="changeQty(1)">+</button>
+        <button (click)="changeQty(-1)">−</button>
+        <input type="number" [(ngModel)]="cantidad" min="1" readonly>
+        <button (click)="changeQty(1)">+</button>
       </div>
 
-      <button class="btn-buy" onclick="addToCart()">Comprar ahora</button>
-      <button class="btn-cart" onclick="addToCart()">🛒 Añadir al carrito</button>
+      <button class="btn-buy" (click)="comprarAhora()">Comprar ahora</button>
+      <button class="btn-cart" (click)="agregarAlCarrito()">🛒 Añadir al carrito</button>
 
     </div>
 
@@ -150,6 +150,63 @@ fetch('https://tu-api.com/book/id')
   });
 */
 </script>
-
+<!-- Modal de recibo -->
+<div class="modal-overlay" *ngIf="mostrarRecibo">
+  <div class="modal-recibo">
+    
+    <div class="recibo-header">
+      <div class="check-icon">✅</div>
+      <h2 *ngIf="tipoTransaccion === 'compra'">¡Compra Exitosa!</h2>
+      <h2 *ngIf="tipoTransaccion === 'carrito'">¡Agregado al Carrito!</h2>
+    </div>
+    
+    <div class="recibo-body">
+      <div class="recibo-item">
+        <span class="recibo-label">Libro:</span>
+        <span class="recibo-value">{{ libro.titulo }}</span>
+      </div>
+      
+      <div class="recibo-item">
+        <span class="recibo-label">Autor:</span>
+        <span class="recibo-value">{{ libro.autor }}</span>
+      </div>
+      
+      <div class="recibo-item">
+        <span class="recibo-label">Cantidad:</span>
+        <span class="recibo-value">{{ cantidad }}</span>
+      </div>
+      
+      <div class="recibo-item">
+        <span class="recibo-label">Precio unitario:</span>
+        <span class="recibo-value">${{ libro.precio | number:'1.2-2' }}</span>
+      </div>
+      
+      <div class="recibo-total">
+        <span>Total:</span>
+        <span>${{ precioTotal | number:'1.2-2' }}</span>
+      </div>
+      
+      <div class="recibo-item" *ngIf="tipoTransaccion === 'compra'">
+        <span class="recibo-label">Estado:</span>
+        <span class="recibo-value" style="color: #4f8a2e;">✓ Pagado</span>
+      </div>
+      
+      <div class="recibo-item" *ngIf="tipoTransaccion === 'carrito'">
+        <span class="recibo-label">Estado:</span>
+        <span class="recibo-value" style="color: #f3a847;">⏳ Pendiente de pago</span>
+      </div>
+    </div>
+    
+    <div class="recibo-footer">
+      <button class="btn-recibo btn-seguir" (click)="seguirComprando()">
+        Seguir comprando
+      </button>
+      <button class="btn-recibo btn-cerrar" (click)="cerrarRecibo()">
+        Cerrar
+      </button>
+    </div>
+    
+  </div>
+</div>
 </body>
 </html>
