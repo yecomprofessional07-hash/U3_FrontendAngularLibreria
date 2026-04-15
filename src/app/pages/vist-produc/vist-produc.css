@@ -230,3 +230,129 @@ body {
     height: 400px;
   }
 }
+/* Modal de recibo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-recibo {
+  background: white;
+  border-radius: 20px;
+  max-width: 450px;
+  width: 90%;
+  padding: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: slideInDown 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.recibo-header {
+  background: linear-gradient(135deg, #2c5e2f, #5f9e2c);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+.recibo-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.recibo-header .check-icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.recibo-body {
+  padding: 25px;
+}
+
+.recibo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.recibo-item:last-child {
+  border-bottom: none;
+}
+
+.recibo-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  margin-top: 10px;
+  border-top: 2px solid #4f8a2e;
+  font-weight: bold;
+  font-size: 20px;
+  color: #4f8a2e;
+}
+
+.recibo-label {
+  font-weight: 500;
+  color: #666;
+}
+
+.recibo-value {
+  font-weight: 600;
+  color: #333;
+}
+
+.recibo-footer {
+  padding: 20px 25px;
+  background: #f8f8f4;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-recibo {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.btn-recibo:hover {
+  transform: scale(1.02);
+}
+
+.btn-seguir {
+  background: #4f8a2e;
+  color: white;
+}
+
+.btn-cerrar {
+  background: #e0e0dc;
+  color: #333;
+}

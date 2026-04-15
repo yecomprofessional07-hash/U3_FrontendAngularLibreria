@@ -6,8 +6,8 @@ import { VistProduc } from "./pages/vist-produc/vist-produc";
 
 export const routes: Routes = [
     { path: "ventas", component: LogVenta },
-    { path: "Inicio", component: PostCompras },
+    { path: "inicio", component: PostCompras },  // 👈 CAMBIE "Inicio" a "inicio" (minúscula)
     { path: "PanelAdmin", component: Admin },
     { path: "productos", component: VistProduc }, 
-    { path: '', redirectTo: 'Inicio', pathMatch: 'full' }
+    { path: '', redirectTo: 'inicio', pathMatch: 'full' }  // 👈 CAMBIE 'Inicio' a 'inicio'
 ];
