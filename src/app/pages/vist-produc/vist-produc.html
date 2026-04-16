@@ -1,212 +1,73 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalle del Libro</title>
-
-  <link rel="stylesheet" href="vist-produc.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
 <!-- =========================
-     BARRA DE BÚSQUEDA
-========================= -->
-<div class="barra-busqueda">
-  <div class="contenedor-busqueda">
-
-    <select class="categoria-select">
-      <option>Todo</option>
-      <option>Novelas</option>
-      <option>Técnicos</option>
-      <option>Infantil</option>
-      <option>Ciencia ficción</option>
-    </select>
-
-    <input class="input-busqueda" type="text" placeholder="Buscar libros..." />
-
-    <button class="btn-buscar">Buscar</button>
-
-    <button class="btn-Login">Login</button>
-
-    <div class="contenido-perfil">
-      <img class="img-perfil" src="https://i.pravatar.cc/40" />
-      <span class="texto-usuario">Usuario</span>
-    </div>
-
-  </div>
-</div>
-
-<!-- =========================
-     PRODUCTO (AMAZON STYLE)
+     PRODUCTO
 ========================= -->
 <div class="container product-layout">
-
-  <!-- IMAGEN IZQUIERDA -->
   <div class="product-image">
-    <img
-      id="book-cover"
-      src="/images/test.jpg"
-      alt="Portada del libro"
-    />
+    <!-- Usamos el ID para asegurar la imagen correcta si libro.imagen falla -->
+    <img [src]="libro.imagen" (error)="$any($event.target).src = 'images/test.jpg'" [alt]="libro.titulo" />
   </div>
 
-  <!-- INFO DERECHA -->
   <div class="book-details">
-
-    <div class="category" id="category">Categoría</div>
-
-    <h1 class="book-title" id="title">Título del libro</h1>
-
-    <p class="author">por <span id="author">Autor</span></p>
+    <div class="category">{{ libro.categoriaNombre }}</div>
+    <h1 class="book-title">{{ libro.titulo }}</h1>
+    <p class="author">por {{ libro.autor }}</p>
 
     <div class="stars">
-      <span class="star">★</span>
-      <span class="star">★</span>
-      <span class="star">★</span>
-      <span class="star">★</span>
-      <span class="star empty">★</span>
-      <span class="star-count" id="rating">0 · 0 reseñas</span>
+      <span *ngFor="let s of [1,2,3,4,5]" class="star" [class.empty]="s > calificacion">★</span>
+      <span class="star-count">{{ calificacion }} · {{ totalResenas }} reseñas</span>
     </div>
 
-    <div class="price" id="total-price">$0.00</div>
-
-    <p class="description" id="description">
-      Descripción del libro...
-    </p>
+    <div class="price">${{ precioTotal | number:'1.2-2' }}</div>
+    
+    <!-- Sinopsis principal: Aquí es donde debe lucir el texto largo -->
+    <p class="description">{{ libro.sinopsis || 'Sin sinopsis disponible para este ejemplar.' }}</p>
 
     <div class="meta-grid">
-      <div class="meta-row"><span class="meta-label">Editorial:</span> <span id="editorial">-</span></div>
-      <div class="meta-row"><span class="meta-label">Año:</span> <span id="year">-</span></div>
-      <div class="meta-row"><span class="meta-label">Páginas:</span> <span id="pages">-</span></div>
-      <div class="meta-row"><span class="meta-label">Idioma:</span> <span id="language">-</span></div>
+      <div><span class="meta-label">Editorial:</span> {{ libro.editorial }}</div>
+      <div><span class="meta-label">Año:</span> {{ libro.anio }}</div>
+      <!-- Reemplazamos la sinopsis repetida por Páginas o Stock para que el grid sea coherente -->
+      <div><span class="meta-label">Disponibles:</span> {{ libro.stock }} unidades</div>
+      <div><span class="meta-label">Idioma:</span> {{ libro.idioma }}</div>
     </div>
 
     <hr class="divider">
 
     <div class="purchase-section">
-
       <div class="quantity-selector">
         <button (click)="changeQty(-1)">−</button>
         <input type="number" [(ngModel)]="cantidad" min="1" readonly>
         <button (click)="changeQty(1)">+</button>
       </div>
-
       <button class="btn-buy" (click)="comprarAhora()">Comprar ahora</button>
-      <button class="btn-cart" (click)="agregarAlCarrito()">🛒 Añadir al carrito</button>
-
     </div>
-
   </div>
-
 </div>
 
-<!-- =========================
-     JS (SIN API REAL)
-========================= -->
-<script>
-const unitPrice = 24.99;
-
-function changeQty(delta) {
-  const input = document.getElementById('qty');
-  let value = parseInt(input.value);
-
-  if (value + delta >= 1) {
-    value += delta;
-    input.value = value;
-
-    document.getElementById('total-price').textContent =
-      "$" + (unitPrice * value).toFixed(2);
-  }
-}
-
-function addToCart() {
-  const qty = document.getElementById('qty').value;
-  alert("Añadiste " + qty + " libro(s)");
-}
-
-/*
-============================
-🔥 AQUÍ IRÍA TU API
-============================
-
-fetch('https://tu-api.com/book/id')
-  .then(res => res.json())
-  .then(data => {
-
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('author').textContent = data.author;
-    document.getElementById('description').textContent = data.description;
-    document.getElementById('category').textContent = data.category;
-    document.getElementById('editorial').textContent = data.editorial;
-    document.getElementById('year').textContent = data.year;
-    document.getElementById('pages').textContent = data.pages;
-    document.getElementById('language').textContent = data.language;
-    document.getElementById('total-price').textContent = "$" + data.price;
-    document.getElementById('book-cover').src = data.image;
-
-  });
-*/
-</script>
-<!-- Modal de recibo -->
+<!-- Modal de recibo (Se mantiene igual, está perfecto) -->
 <div class="modal-overlay" *ngIf="mostrarRecibo">
   <div class="modal-recibo">
-    
     <div class="recibo-header">
       <div class="check-icon">✅</div>
       <h2 *ngIf="tipoTransaccion === 'compra'">¡Compra Exitosa!</h2>
       <h2 *ngIf="tipoTransaccion === 'carrito'">¡Agregado al Carrito!</h2>
     </div>
-    
     <div class="recibo-body">
       <div class="recibo-item">
         <span class="recibo-label">Libro:</span>
         <span class="recibo-value">{{ libro.titulo }}</span>
       </div>
-      
-      <div class="recibo-item">
-        <span class="recibo-label">Autor:</span>
-        <span class="recibo-value">{{ libro.autor }}</span>
-      </div>
-      
       <div class="recibo-item">
         <span class="recibo-label">Cantidad:</span>
         <span class="recibo-value">{{ cantidad }}</span>
       </div>
-      
-      <div class="recibo-item">
-        <span class="recibo-label">Precio unitario:</span>
-        <span class="recibo-value">${{ libro.precio | number:'1.2-2' }}</span>
-      </div>
-      
       <div class="recibo-total">
         <span>Total:</span>
         <span>${{ precioTotal | number:'1.2-2' }}</span>
       </div>
-      
-      <div class="recibo-item" *ngIf="tipoTransaccion === 'compra'">
-        <span class="recibo-label">Estado:</span>
-        <span class="recibo-value" style="color: #4f8a2e;">✓ Pagado</span>
-      </div>
-      
-      <div class="recibo-item" *ngIf="tipoTransaccion === 'carrito'">
-        <span class="recibo-label">Estado:</span>
-        <span class="recibo-value" style="color: #f3a847;">⏳ Pendiente de pago</span>
-      </div>
     </div>
-    
     <div class="recibo-footer">
-      <button class="btn-recibo btn-seguir" (click)="seguirComprando()">
-        Seguir comprando
-      </button>
-      <button class="btn-recibo btn-cerrar" (click)="cerrarRecibo()">
-        Cerrar
-      </button>
+      <button class="btn-recibo btn-seguir" (click)="seguirComprando()">Seguir comprando</button>
+      <button class="btn-recibo btn-cerrar" (click)="cerrarRecibo()">Cerrar</button>
     </div>
-    
   </div>
 </div>
-</body>
-</html>

@@ -7,6 +7,8 @@ import { VentaModel } from '../Models/venta.model';
 import { ProveedoresModel } from '../Models/Proveedores.model';
 import { CategoriaModel } from '../Models/categoria.model';
 
+import { LoginRequest } from '../Models/login-request.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +19,15 @@ export class ApiConexService {
     private urlLibros = `${this.urlBase}/Libros`; 
     private urlCategoria = `${this.urlBase}/categorias`;
     private urlProveedores = `${this.urlBase}/Proveedores`; 
+    private urlAdmin = `${this.urlBase}/Administradores/login`;
 
     constructor(private http: HttpClient){}
 
+    // Metodos del Administrador
+
+    loginAdmin(credentials: LoginRequest): Observable<any> {
+    return this.http.post(`${this.urlAdmin}/Login`, credentials); 
+    }
     // Metodos del Cliente
     CrearCliente(cliente: ClienteModel): Observable<ClienteModel>{
         return this.http.post<ClienteModel>(this.urlClientes, cliente);
@@ -35,6 +43,9 @@ export class ApiConexService {
     }
     ListarClientes(): Observable<ClienteModel[]>{
         return this.http.get<ClienteModel[]>(this.urlClientes);
+    }
+    loginCliente(credentials: LoginRequest): Observable<any> {
+    return this.http.post(`${this.urlClientes}/Login`, credentials); 
     }
 
     // Metodos del Libro

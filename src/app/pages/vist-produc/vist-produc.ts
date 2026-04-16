@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { VentaModel } from '../../Models/venta.model';
+import { ApiConexService } from '../../services/api-conex.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +17,7 @@ export class VistProduc implements OnInit {
     autor: 'Cargando...',
     categoriaNombre: 'Cargando...',
     precio: 0,
-    descripcion: 'Cargando información del libro...',
+    descripcion: 'Cargando...',
     editorial: '-',
     anio: '-',
     paginas: '-',
@@ -30,45 +32,44 @@ export class VistProduc implements OnInit {
   mostrarRecibo: boolean = false;
   tipoTransaccion: 'compra' | 'carrito' = 'compra';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private apiService: ApiConexService
+  ) {}
 
-  ngOnInit() {
-    // SOLO usar localStorage, NO llamar a la API
-    const libroGuardado = localStorage.getItem('libroSeleccionado');
+ngOnInit() {
+  const libroGuardado = localStorage.getItem('libroSeleccionado');
+  
+  if (libroGuardado) {
+    const objetoRecuperado = JSON.parse(libroGuardado);
     
-    if (libroGuardado) {
-      const libroOriginal = JSON.parse(libroGuardado);
-      console.log('Libro recuperado del localStorage:', libroOriginal); // Para depurar
-      
-      // Mapear los datos del libro
-      this.libro = {
-        titulo: libroOriginal.Titulo || libroOriginal.titulo || 'Título no disponible',
-        autor: libroOriginal.Autor || libroOriginal.autor || 'Autor no disponible',
-        precio: libroOriginal.Precio || libroOriginal.precio || 0,
-        categoriaNombre: libroOriginal.categoriaNombre || this.obtenerCategoriaNombre(libroOriginal.CategoriaId),
-        descripcion: libroOriginal.Descripcion || libroOriginal.descripcion || `"${libroOriginal.Titulo || libroOriginal.titulo}" - Una obra fascinante.`,
-        editorial: libroOriginal.Editorial || libroOriginal.editorial || 'No especificada',
-        anio: libroOriginal.Anio || libroOriginal.anio || 'No especificado',
-        paginas: libroOriginal.Paginas || libroOriginal.paginas || 'No especificado',
-        idioma: libroOriginal.Idioma || libroOriginal.idioma || 'Español',
-        imagen: libroOriginal.ImagenUrl || libroOriginal.imagen || '/images/test.jpg'
-      };
-    } else {
-      console.warn('No hay libro seleccionado en localStorage');
-      // Opcional: redirigir al inicio si no hay libro
-      // this.router.navigate(['/inicio']);
+    // 1. EXTRAER EL LIBRO:
+    // Si guardaste la respuesta completa, buscamos dentro de .data[0]
+    // Si guardaste el libro suelto, lo usamos directamente.
+    let libroData = objetoRecuperado.data ? objetoRecuperado.data : objetoRecuperado;
+    
+    // Si es un array, tomamos el primero (o el que necesites)
+    if (Array.isArray(libroData)) {
+        libroData = libroData[0]; 
     }
-  }
 
-  obtenerCategoriaNombre(categoriaId: number): string {
-    const categorias: { [key: number]: string } = {
-      1: 'Ficción',
-      2: 'Ciencia',
-      3: 'Historia',
-      4: 'Autoayuda'
+    console.log('Datos finales del libro:', libroData);
+
+    // 2. MAPEO SEGURO
+    this.libro = {
+      titulo: libroData.titulo || 'Sin título',
+      autor: libroData.autor || 'Sin autor',
+      precio: libroData.precio || 0,
+      stock: libroData.stock || 0,
+      sinopsis: libroData.sinopsis || 'Sinopsis no encontrada', // <--- Clave
+      categoriaNombre: libroData.categoriaNombre || 'General',
+      editorial: libroData.editorial || 'No especificada',
+      anio: libroData.anio || 'N/A',
+      idioma: libroData.idioma || 'Español',
+      imagen: `images/${libroData.id}.jpg`
     };
-    return categorias[categoriaId] || 'General';
   }
+}
+
 
   changeQty(delta: number) {
     const nuevaCantidad = this.cantidad + delta;
@@ -78,7 +79,7 @@ export class VistProduc implements OnInit {
   }
 
   get precioTotal(): number {
-    return (this.libro.precio || 0) * this.cantidad;
+    return this.libro.precio * this.cantidad;
   }
 
   comprarAhora() {
@@ -99,4 +100,42 @@ export class VistProduc implements OnInit {
     this.mostrarRecibo = false;
     this.router.navigate(['/inicio']);
   }
+
+  volverAlInicio() {
+    this.router.navigate(['/inicio']);
+  }
+
+  comprar() {
+  // 1. Recuperamos el libro original para obtener su ID real de la base de datos
+  const libroGuardado = localStorage.getItem('libroSeleccionado');
+  if (!libroGuardado) return;
+  const libroOriginal = JSON.parse(libroGuardado);
+
+  // 2. Estructuramos el objeto según VentaModel
+  const nuevaVenta: VentaModel = {
+    clienteId: 1, // TIP: Aquí deberías usar el ID del usuario logueado
+    detalles: [
+      {
+        libroId: libroOriginal.id || libroOriginal.Id, // Usamos el ID de la DB
+        cantidad: this.cantidad
+      }
+    ]
+  };
+
+  // 3. Llamamos al servicio
+  this.apiService.guardarVenta(nuevaVenta).subscribe({
+    next: (res) => {
+      console.log('Venta procesada con éxito:', res);
+      alert('¡Compra realizada con éxito!');
+      this.mostrarRecibo = false;
+      this.router.navigate(['/inicio']);
+    },
+    error: (err) => {
+      console.error('Error al comprar:', err);
+      // Si el backend devuelve el objeto ApiResponse, el mensaje viene en err.error.message
+      alert('Error al procesar la compra: ' + (err.error?.message || 'Servidor no disponible'));
+    }
+  });
+}
+
 }

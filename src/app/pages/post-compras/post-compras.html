@@ -36,7 +36,7 @@
     <div class="carrusel">
       <div class="tarjeta-libro" *ngFor="let libro of librosFiltrados">
         <h3>{{ libro.titulo }}</h3>
-        <img src="images/test.jpg">
+        <img [src]="'images/' + libro.id + '.jpg'" (error)="$any($event.target).src = 'images/test.jpg'" [alt]="libro.titulo">
         <p>{{ libro.autor }}</p>
         <span class="precio">${{ libro.precio }}</span>
         <button class="btn-comprar" (click)="irAProducto(libro)">Comprar</button>
@@ -54,7 +54,7 @@
     <div class="carrusel">
       <div class="tarjeta-libro" *ngFor="let libro of librosCiencia">
         <h3>{{ libro.titulo }}</h3>
-        <img src="images/test.jpg">
+        <img [src]="'images/' + libro.id + '.jpg'" (error)="$any($event.target).src = 'images/test.jpg'" [alt]="libro.titulo">
         <p>{{ libro.autor }}</p>
         <span class="precio">${{ libro.precio }}</span>
         <button class="btn-comprar" (click)="irAProducto(libro)">Comprar</button>
@@ -72,7 +72,7 @@
     <div class="carrusel">
       <div class="tarjeta-libro" *ngFor="let libro of librosHistoria">
         <h3>{{ libro.titulo }}</h3>
-        <img src="images/test.jpg">
+        <img [src]="'images/' + libro.id + '.jpg'" (error)="$any($event.target).src = 'images/test.jpg'" [alt]="libro.titulo">
         <p>{{ libro.autor }}</p>
         <span class="precio">${{ libro.precio }}</span>
         <button class="btn-comprar" (click)="irAProducto(libro)">Comprar</button>
