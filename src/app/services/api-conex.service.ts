@@ -19,7 +19,7 @@ export class ApiConexService {
     private urlLibros = `${this.urlBase}/Libros`; 
     private urlCategoria = `${this.urlBase}/categorias`;
     private urlProveedores = `${this.urlBase}/Proveedores`; 
-    private urlAdmin = `${this.urlBase}/Administradores/login`;
+    private urlAdmin = `${this.urlBase}/Administradores`;
 
     constructor(private http: HttpClient){}
 
