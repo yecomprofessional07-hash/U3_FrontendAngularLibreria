@@ -240,6 +240,15 @@ body {
   transform: scale(1.05);
   background: linear-gradient(135deg, #1f4822 0%, #4c8a1f 100%);
 }
+.tarjeta-libro img {
+  width: 150px;       /* Ancho fijo pequeño */
+  height: 200px;      /* Alto fijo para que todas las tarjetas midan lo mismo */
+  object-fit: cover;  /* ¡Clave! Recorta la imagen para que llene el espacio sin estirarse */
+  border-radius: 8px; /* Opcional: bordes redondeados para que se vea moderno */
+  display: block;
+  margin: 0 auto 10px; /* Centra la imagen y da espacio abajo */
+}
+
 
 .carrusel-btn {
   background-color: #b7e142;
